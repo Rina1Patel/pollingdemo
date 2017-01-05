@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"
+        type="text/javascript"></script>
+        <script>
+            /* (function poll() {
+             setTimeout(function() {
+             $.ajax({ url: "server", success: function(data) {
+             sales.setValue(data.value);
+             }, dataType: "json", complete: poll });
+             }, 30000);
+             })();*/
+            $(document).ready(function () {
+
+                setInterval(function () {
+
+
+                    $.ajax({
+                        url: 'http://localhost:17733/WorkDay/NewServlet',
+                        data: {
+                            userName: $('#userName').val()
+                        },
+                        success: function (responseText) {
+                            $('#ajaxGetUserServletResponse').text(responseText);
+                        }
+
+                    });
+                }, 300);
+
+
+            });
+
+
+            /*   $(document).ready(function() {
+             $('#userName').blur(function() {
+             $.ajax({
+             url : 'http://localhost:8080/WorkDay/NewServlet',
+             data : {
+             userName : $('#userName').val()
+             },
+             success : function(responseText) {
+             $('#ajaxGetUserServletResponse').text(responseText);
+             }
+             }); 
+             
+             });
+             });*/
+        </script>
+    </head>
+
+    <body>
+
+
+        <form>
+            Enter Your Name: <input type="text" id="userName" />
+        </form>
+        <br>
+        <br>
+
+        <strong>Ajax Response</strong>:
+        <div id="ajaxGetUserServletResponse"></div>
+    </body>
+</html>
